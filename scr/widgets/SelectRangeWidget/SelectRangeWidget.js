@@ -7,14 +7,15 @@ function createSelectRangeWidget(
     const container = $(`<form class="slw_container"/>`)
     items.forEach(item => {
         const i = $(`<label class="slw-item">
-                <input type="checkbox" class="slw-checkbox-input" name="filter" value="${item}"/>
+                <input type="checkbox" class="slw-checkbox-input" name="filter" value="${item.v}" ${item.isChecked ? 'checked' : ''}/>
                 <div class="slw-checkbox" aria-hidden="true">
-                    <span>${ item }</span>
+                    <span>${ item.v }</span>
                 </div>
             </label>`)
         container.append(i)
     })
-    container.on('change', function() {
+    container.on('change', function(e) {
+        e.preventDefault();
         const data = new FormData(this);
         const filters = data.getAll('filter')
         onChange(filters)
