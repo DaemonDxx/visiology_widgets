@@ -39,18 +39,20 @@ function createMonthPickerWidget(
     applyCss()
 
     let lastSelectIndex = 0
-    const container = $(`<form class="mp_container"/>`)
+    const container = $(`<form class="mp_container ${mode}"/>`)
 
     items.forEach(month => {
         const i = $(`
+        <div class="mp-item-container">
             <label class="mp-item">
+                <input type="checkbox" class="mp-checkbox-input" name="${id}" value="${month}" ${checkedItems.includes(month.toLowerCase()) ? 'checked' : ''}/>
                 <div class="mp-checkbox" aria-hidden="true">
                     <span>${month}</span>
                 </div>
-            </label>`)
-        const input = $(`
-            <input type="checkbox" class="mp-checkbox-input" name="${id}" value="${month}" ${checkedItems.includes(month.toLowerCase()) ? 'checked' : ''}/>
-        `)
+            </label>\
+        </div>`)
+
+        const input = i.find("input")
         input.on('click', function (e) {
             if (e.shiftKey) {
                 const selectIndex = indexes[month]
@@ -72,8 +74,6 @@ function createMonthPickerWidget(
             }
             lastSelectIndex = indexes[month]
         })
-
-        i.prepend(input)
         container.append(i)
     })
 
