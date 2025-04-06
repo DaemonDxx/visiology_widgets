@@ -1,0 +1,65 @@
+.mp_container {
+
+    --bg-color_checked: rgba(189, 215, 238, 1);
+    --bg-color_hovered: rgba(249, 229, 121, 1);
+    --bg-color: #afafaf;
+
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 2px;
+    gap: 6px;
+
+    .mp-item {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mp-checkbox-input {
+        appearance: none;
+        position: relative;
+        min-width: 100%;
+        height: 38px;
+        border-radius: 10px;
+    }
+
+    .mp-checkbox-input[type="checkbox"] {
+        margin: 0;
+    }
+
+    .mp-checkbox {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        display: flex;
+        align-items: center;
+        min-width: 100%;
+        height: 38px;
+        border: 1px solid var(--bg-color);
+        border-radius: 10px;
+        user-select: none;
+        box-sizing: border-box;
+        padding-left: 10px;
+
+        &:hover {
+            background: linear-gradient(var(--bg-color_hovered), white);
+        }
+    }
+
+    .mp-checkbox-input:checked {
+        background: var(--bg-color_checked);
+    }
+
+    .mp-checkbox-input:checked + .mp-checkbox {
+        color: #000000;
+        &:hover {
+            background: linear-gradient(var(--bg-color_checked), white);
+        }
+    }
+
+    .mp-checkbox-input:disabled {
+        background: gray;
+    }
+}
